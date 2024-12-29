@@ -1,0 +1,56 @@
+﻿@{
+ViewData["Title"] = "Contact";
+}
+
+<body>
+<div class="page-title">
+    <h1>Contact Us</h1>
+    <p>Get in touch with us today</p>
+</div>
+
+<section class="contact-section">
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>123 Street Name</p>
+        <p>City, Country</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Email: info@example.com</p>
+    </div>
+    <div class="contact-form">
+        <h2>Send us a message</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<div class="map-section" id="map"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
+
+<script>
+    // Initialize map
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add marker for location
+        L.marker([51.505, -0.09]).addTo(map)
+            .bindPopup('Your Company Location')
+            .openPopup();
+    });
+
+    // Handle form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Form submitted successfully!');
+        this.reset();
+    });
+</script>
+</body>
